@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login - VoteX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="sub-bg">
+    <header>
+        <div class="logo">VoteX</div>
+        <nav>
+            <button onclick="window.location.href='index.html'">Home</button>
+        </nav>
+    </header>
+    <div class="form-container">
+        <h2>Login to Vote</h2>
+        <form id="loginForm" action="#" method="post">
+            <label for="login_citizenship_id">Citizenship ID:</label>
+            <input type="text" id="login_citizenship_id" name="login_citizenship_id" placeholder="Enter your Citizenship ID" required>
+
+            <label for="login_name">Full Name:</label>
+            <input type="text" id="login_name" name="login_name" placeholder="Enter your Full Name" required>
+
+            <button type="submit">Login</button>
+            <p id="login-error" class="error-message"></p>
+        </form>
+    </div>
+</body>
+</html>

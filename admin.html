@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Panel - VoteX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="sub-bg">
+    <header>
+        <div class="logo">VoteX</div>
+        <nav>
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="logout()">Logout</button>
+        </nav>
+    </header>
+
+    <div class="admin-container">
+        <h2>Admin Panel</h2>
+        <div id="admin-login" class="form-container">
+            <h3>Admin Login</h3>
+            <form id="adminLoginForm">
+                <label for="admin-username">Username:</label>
+                <input type="text" id="admin-username" placeholder="Enter admin username" required>
+                <label for="admin-password">Password:</label>
+                <input type="password" id="admin-password" placeholder="Enter admin password" required>
+                <button type="submit">Login</button>
+                <p id="admin-error" class="error-message"></p>
+            </form>
+        </div>
+
+        <div id="admin-panel" class="hidden">
+            <section class="admin-section">
+                <h3>Add Candidate</h3>
+                <form id="addCandidateForm">
+                    <label for="candidate-name">Candidate Name:</label>
+                    <input type="text" id="candidate-name" placeholder="Enter candidate name" required>
+                    <button type="submit">Add Candidate</button>
+                    <p id="candidate-error" class="error-message"></p>
+                </form>
+            </section>
+
+            <section class="admin-section">
+                <h3>Candidates & Votes</h3>
+                <div id="vote-tracking"></div>
+                <canvas id="voteChart" width="400" height="200"></canvas>
+                <p>Total Votes: <span id="total-votes">0</span></p>
+            </section>
+
+            <section class="admin-section">
+                <h3>Manage Voters</h3>
+                <div id="voter-list"></div>
+                <p>Total Voters: <span id="total-voters">0</span></p>
+            </section>
+        </div>
+    </div>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9258608a6e1ed9e9',t:'MTc0Mjg0MjQ2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

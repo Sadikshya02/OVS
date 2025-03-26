@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Login - VoteX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="admin.js" defer></script>
+</head>
+<body class="sub-bg">
+    <header>
+        <div class="logo">VoteX</div>
+        <nav>
+            <button onclick="window.location.href='index.php'">Home</button>
+        </nav>
+    </header>
+
+    <div class="admin-container">
+        <h2>Admin Login</h2>
+        <div class="form-container">
+            <form id="adminLoginForm">
+                <label for="admin-username">Username:</label>
+                <input type="text" id="admin-username" name="username" placeholder="Enter admin username" required>
+                <label for="admin-password">Password:</label>
+                <input type="password" id="admin-password" name="password" placeholder="Enter admin password" required>
+                <input type="hidden" name="admin_login" value="1">
+                <button type="submit">Login</button>
+                <p id="admin-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
