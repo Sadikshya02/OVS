@@ -1,0 +1,68 @@
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vote - VoteX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="sub-bg">
+    <header>
+        <div class="logo">VoteX</div>
+        <nav>
+            <button onclick="window.location.href='{% url 'index' %}'">Home</button>
+            <button onclick="logout()">Logout</button>
+        </nav>
+    </header>
+
+    <div class="vote-container">
+        <h2>Cast Your Vote</h2>
+        <p id="vote-status" class="status-message"></p>
+        <form id="voteForm" method="post">
+            {% csrf_token %}
+            <div id="candidate-list"></div>
+            <button type="submit">Submit Vote</button>
+        </form>
+    </div>
+</body>
+</html> {% endcomment %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vote - VoteX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="sub-bg">
+    <header>
+        <div class="logo">VoteX</div>
+        <nav>
+            <button onclick="window.location.href='{% url 'index' %}'">Home</button>
+            {% comment %} <button onclick="window.location.href='{% url 'logout' %}'">Logout</button> {% endcomment %}
+        </nav>
+    </header>
+
+    <div class="vote-container">
+        <h2>Cast Your Vote</h2>
+        <p id="vote-status" class="status-message"></p>
+        <form id="voteForm" method="post">
+            {% csrf_token %}
+            <div id="candidate-list">
+                {% for candidate in candidates %}
+                    <div>
+                        <input type="radio" id="candidate_{{ candidate.id }}" name="vote" value="{{ candidate.id }}" required>
+                        <label for="candidate_{{ candidate.id }}">{{ candidate.name }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit">Submit Vote</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,561 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+*{
+font-family: "Poppins", serif;
+text-decoration: none;
+overflow-x: hidden;
+max-width: 1920px;
+padding: 0px;
+margin: 0%;
+} */
+/* Backgrounds */
+.main-bg {
+    background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+.main-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,208C672,213,768,203,864,186.7C960,171,1056,149,1152,149.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') no-repeat bottom;
+    z-index: 0;
+}
+
+.sub-bg {
+    background: linear-gradient(135deg, #f0f0ff 0%, #e6e6ff 100%);
+    min-height: 100vh;
+}
+
+header, main, .form-container, .rules-container, .about-container, .vote-container, .admin-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 10px 10px;
+}
+
+.logo {
+    color: #6b48ff;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* Modern Button Styles (Nav Buttons) */
+nav button {
+    padding: 12px 25px;
+    margin-left: 10px;
+    background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%); /* Gradient background */
+    color: #fff;
+    border: none;
+    border-radius: 30px; /* More rounded */
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase; /* Modern touch */
+    box-shadow: 0 4px 15px rgba(107, 72, 255, 0.4); /* Subtle glow */
+    transition: all 0.3s ease;
+}
+
+nav button:hover {
+    background: linear-gradient(135deg, #5438cc 0%, #00b7c3 100%); /* Darker gradient on hover */
+    transform: translateY(-3px); /* Slight lift */
+    box-shadow: 0 6px 20px rgba(107, 72, 255, 0.6); /* Enhanced glow */
+}
+
+/* Main Page */
+.hero {
+    text-align: center;
+    margin-top: 70px;
+    color: #fff;
+    margin-left: 30px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* Modern CTA Button */
+.cta-button {
+    padding: 15px 35px;
+    background: linear-gradient(135deg, #fff 0%, #e6e6ff 100%);
+    color: #6b48ff;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    margin-top: -20px; /* Moves the button up by 20px */
+}
+
+.cta-button:hover {
+    background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(107, 72, 255, 0.5);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    padding: 20px;
+    margin-left: 20px;
+    /* margin-top: -30px; Moves the stats section up by 30px */
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    min-width: 120px;
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+}
+
+.stat-card .number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.stat-card span:last-child {
+    color: #e6e6ff;
+    font-size: 1rem;
+}
+
+/* Form Container */
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2, .vote-container h2, .admin-container h2 {
+    text-align: center;
+    color: #6b48ff;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+}
+
+input, select {
+    padding: 12px;
+    border: 2px solid #e6e6ff;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #6b48ff;
+}
+
+/* Modern General Button (Forms, Admin, etc.) */
+button {
+    padding: 14px 20px; /* Slightly larger */
+    background: linear-gradient(135deg, #6b48ff 0%, #00ddeb 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px; /* Softer corners */
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(107, 72, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #5438cc 0%, #00b7c3 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(107, 72, 255, 0.6);
+}
+
+.error-message, .status-message {
+    color: #ff4444;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Rules Container */
+.rules-container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.rules-container h2 {
+    text-align: center;
+    color: #6b48ff;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.rules-container ol {
+    padding-left: 25px;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* About Container */
+.about-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.about-container h2 {
+    color: #6b48ff;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.about-container .intro {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.team-member {
+    padding: 25px;
+    background: #f9f9ff;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #6b48ff;
+}
+
+.team-member h3 {
+    color: #6b48ff;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.team-member .role {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.team-member p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Vote Container */
+.vote-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.candidate-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #e6e6ff;
+}
+
+/* Admin Container */
+.admin-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.admin-section {
+    margin-top: 30px;
+}
+
+.admin-section h3 {
+    color: #6b48ff;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.candidate-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e6e6ff;
+}
+
+.candidate-entry span {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Modern Remove Button (Override for Red Buttons) */
+.candidate-entry button {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #ff4444 0%, #ff7878 100%); /* Red gradient */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+    transition: all 0.3s ease;
+}
+
+.candidate-entry button:hover {
+    background: linear-gradient(135deg, #cc3333 0%, #e55a5a 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 68, 68, 0.6);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer */
+footer {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px 10px;
+    color: #333;
+    text-align: center;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto 0px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-section h3 {
+    color: #6b48ff;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    color: #6b48ff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #5438cc;
+}
+
+.footer-bottom {
+    border-top: 1px solid #e6e6ff;
+    padding-top: 8px;
+}
+
+.footer-bottom p {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .form-container, .rules-container, .about-container, .vote-container, .admin-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    nav button {
+        padding: 10px 20px; /* Slightly smaller for mobile */
+        margin-left: 5px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .footer-section {
+        margin: 20px 0;
+    }
+
+    .team {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .team-member {
+        padding: 20px;
+    }
+
+    .team-member img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .candidate-entry {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* Modern Voter Entry Button (Override for Red Buttons) */
+.voter-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e6e6ff;
+}
+
+.voter-entry span {
+    font-size: 1rem;
+    color: #555;
+}
+
+.voter-entry button {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #ff4444 0%, #ff7878 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+    transition: all 0.3s ease;
+}
+
+.voter-entry button:hover {
+    background: linear-gradient(135deg, #cc3333 0%, #e55a5a 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 68, 68, 0.6);
+}
+.illust{
+    height: 500px;
+    width: 500px;
+    margin-left:20px ;
+    margin-top:40px ;
+}
+.banner1{
+    max-height: 800px;
+    display: grid;
+    grid-template-columns: 600px 1fr;
+    margin-top: 70px;
+    padding-right: 90px;
+    padding-left: 90px;
+    gap: 20px;
+}
