@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 def index(request):
     return render(request, 'index.html')
-
+# Comments
+# Hello 
 def register(request):
     if request.method == 'POST':
         # Get form data manually from the POST request
