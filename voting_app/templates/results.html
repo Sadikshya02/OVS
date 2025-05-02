@@ -1,0 +1,280 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #F5F6F5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(to right, #1F618D, #4A90E2);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .profile {
+            position: relative;
+        }
+
+        .avatar {
+            border-radius: 50%;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+            z-index: 999;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.5rem;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown a:hover {
+            background: #4A90E2;
+            color: white;
+        }
+
+        .logout {
+            color: #E74C3C;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-right: 1px solid #ddd;
+            padding: 1rem;
+            position: fixed;
+            top: 70px;
+            bottom: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        .sidebar li:hover {
+            background: #4A90E2;
+            color: white;
+        }
+
+        .icon {
+            margin-right: 0.5rem;
+        }
+
+        main {
+            margin-left: 250px;
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .welcome h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .candidates, .elections {
+            margin-bottom: 2rem;
+        }
+
+        .candidate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .candidate-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .candidate-card:hover {
+            transform: scale(1.05);
+        }
+
+        .candidate-card img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 0.5rem;
+        }
+
+        .candidate-card h3 {
+            font-size: 1.2rem;
+        }
+
+        .candidate-card p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .view-btn, .vote-btn {
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .view-btn {
+            background: transparent;
+            border: 1px solid #4A90E2;
+            color: #4A90E2;
+        }
+
+        .vote-btn {
+            background: #2ECC71;
+            color: white;
+        }
+
+        .vote-btn[disabled] {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .election-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+
+            main {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">VoteX</div>
+    <h1>Voting Dashboard</h1>
+    <div class="profile">
+        <img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
+        <div class="dropdown">
+            <a href="#">Change Password</a>
+            <a href="#">Profile Settings</a>
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+    </div>
+</header>
+
+<aside class="sidebar">
+    <ul>
+        <li><i class="icon">🏠</i> Dashboard</li>
+        <li><i class="icon">👥</i> Available Candidates</li>
+        <li><i class="icon">📅</i> Upcoming Elections</li>
+        <li><i class="icon">✔</i> My Votes</li>
+        <li><i class="icon">❓</i> Help & Support</li>
+    </ul>
+</aside>
+
+<main>
+    <section class="welcome">
+        <h2>Welcome, {{ user.name }}!</h2>
+        {% if vote_status_message %}
+            <p style="margin-top: 1rem; font-weight: bold;">{{ vote_status_message }}</p>
+        {% endif %}
+    </section>
+
+    <section class="candidates">
+        <h2>Available Candidates</h2>
+        <div class="candidate-grid">
+            <form method="post" action="{% url 'vote' %}">
+                {% csrf_token %}
+                {% for candidate in candidates %}
+                    <div class="candidate-card">
+                        <img src="https://via.placeholder.com/150" alt="Candidate">
+                        <h3>{{ candidate.name }}</h3>
+                        <p>{{ candidate.party }}</p>
+                        <button type="button" class="view-btn">View Profile</button>
+                        <button 
+                            type="submit" 
+                            name="vote" 
+                            value="{{ candidate.id }}" 
+                            class="vote-btn" 
+                            {% if user_voted %}disabled{% endif %}
+                        >
+                            {% if user_voted and voted_candidate.id == candidate.id %}✔ Voted{% else %}Vote{% endif %}
+                        </button>
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
+    </section>
+
+    <section class="elections">
+        <h2>Upcoming Elections</h2>
+        <div class="election-list">
+            <div class="election-card">
+                <h3>General Election 2025</h3>
+                <p>April 15, 2025 - 12 days left</p>
+                <button class="view-btn">Learn More</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    const avatar = document.querySelector('.avatar');
+    const dropdown = document.querySelector('.dropdown');
+    avatar.addEventListener('click', () => {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+</script>
+</body>
+</html>
