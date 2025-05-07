@@ -124,3 +124,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'voting_app', 'static')]
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email confirmation
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'           # Or your email provider
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'lamsalyuyutsu38@gmail.com' # Replace with your email
+EMAIL_HOST_PASSWORD = 'ieaq oavv svxa pqro'  # Use app-specific password if using Gmail
