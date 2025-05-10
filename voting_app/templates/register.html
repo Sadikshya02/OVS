@@ -122,7 +122,32 @@
                     {% endfor %}
                 </div>
             {% endif %}
+            <!-- Security Question -->
+            <label for="security_question">Security Question:</label>
+            <select id="security_question" name="security_question" required>
+                <option value="">Select a Question</option>
+                <option value="Your birthplace?" {% if request.POST.security_question == "Your birthplace?" %}selected{% endif %}>Your birthplace?</option>
+                <option value="Your pet's name?" {% if request.POST.security_question == "Your pet's name?" %}selected{% endif %}>Your pet's name?</option>
+                <option value="Your mother's maiden name?" {% if request.POST.security_question == "Your mother's maiden name?" %}selected{% endif %}>Your mother's maiden name?</option>
+            </select>
+            {% if form.security_question.errors %}
+                <div class="error-message">
+                    {% for error in form.security_question.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
+            <!-- Security Answer -->
+            <label for="security_answer">Security Answer:</label>
+            <input type="text" id="security_answer" name="security_answer" placeholder="Enter your Answer" required value="{{ request.POST.security_answer }}">
+            {% if form.security_answer.errors %}
+                <div class="error-message">
+                    {% for error in form.security_answer.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <label for="address">Address:</label>
             <input type="text" id="address" name="address" placeholder="Enter your Address" required value="{{ request.POST.address }}">
             {% if form.address.errors %}
