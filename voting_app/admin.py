@@ -1,11 +1,10 @@
-# from django.contrib import admin
 from django.contrib import admin
 from .models import Voter, Candidate, Vote
 
 @admin.register(Voter)
 class VoterAdmin(admin.ModelAdmin):
-    list_display = ('name','citizenship_id', 'gender','email', 'age', 'address')
-    search_fields = ('name', 'email')
+    list_display = ('name','citizenship_id','email', 'gender', 'age', 'address', 'password')
+    search_fields = ('name','email')
     list_filter = ('gender', 'age')
 
 @admin.register(Candidate)
