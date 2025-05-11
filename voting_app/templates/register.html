@@ -1,4 +1,43 @@
 
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register - VoteX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="sub-bg">
+    <header>
+        <div class="logo">VoteX</div>
+        <nav>
+            <a href="{% url 'index' %}"><button>Home</button></a>
+        </nav>
+    </header>
+    <div class="form-container">
+        <h2>Register to Vote</h2>
+        <form id="registerForm" action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <label for="citizenship_id">Citizenship ID:</label>
+            <input type="text" id="citizenship_id" name="citizenship_id" placeholder="Enter your Citizenship ID" required aria-describedby="citizenship-error">
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your Full Name" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your Age" min="18" required aria-describedby="age-error">
+
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +52,7 @@
     <header>
         <div class="logo">VoteX</div>
         <nav>
-            <button onclick="window.location.href='{% url 'index' %}'">Home</button>
+            <a href="{% url 'index' %}"><button>Home</button></a>
         </nav>
     </header>
     <div class="form-container">
@@ -81,6 +120,32 @@
             {% if form.address.errors %}
                 <div class="error-message">
                     {% for error in form.address.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <!-- Security Question -->
+            <label for="security_question">Security Question:</label>
+            <select id="security_question" name="security_question" required>
+                <option value="">Select a Question</option>
+                <option value="Your birthplace?" {% if request.POST.security_question == "Your birthplace?" %}selected{% endif %}>Your birthplace?</option>
+                <option value="Your pet's name?" {% if request.POST.security_question == "Your pet's name?" %}selected{% endif %}>Your pet's name?</option>
+                <option value="Your mother's maiden name?" {% if request.POST.security_question == "Your mother's maiden name?" %}selected{% endif %}>Your mother's maiden name?</option>
+            </select>
+            {% if form.security_question.errors %}
+                <div class="error-message">
+                    {% for error in form.security_question.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <!-- Security Answer -->
+            <label for="security_answer">Security Answer:</label>
+            <input type="text" id="security_answer" name="security_answer" placeholder="Enter your Answer" required value="{{ request.POST.security_answer }}">
+            {% if form.security_answer.errors %}
+                <div class="error-message">
+                    {% for error in form.security_answer.errors %}
                         <p>{{ error }}</p>
                     {% endfor %}
                 </div>
