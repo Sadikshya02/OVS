@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ candidate.name }} - Candidate Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        p {
+            line-height: 1.6;
+            color: #7f8c8d;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .graph img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .candidate-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #6b48ff;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ candidate.name }} - Candidate Profile</h1>
+
+        <div class="section">
+            <h2>About {{ candidate.name }}</h2>
+            {% if candidate.image %}
+            <img src="{{ candidate.image.url }}" alt="{{ candidate.name }}'s picture" class="candidate-image">
+            {% else %}
+            <p style="text-align: center;">No image available</p>
+            {% endif %}
+            <p><strong>Party:</strong> {{ candidate.party }}</p>
+            <p><strong>Description:</strong> {{ candidate.description|default:"No description available." }}</p>
+            <p><strong>Biography:</strong> {{ candidate.biography|default:"No biography available." }}</p>
+            <p><strong>Platform:</strong> {{ candidate.platform|default:"No platform available." }}</p>
+            <p><strong>Experience:</strong> {{ candidate.experience|default:"No experience available." }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Election Details</h2>
+            <p><strong>Election:</strong> {{ election.name }}</p>
+            <p><strong>Date:</strong> {{ election.date }}</p>
+            <p><strong>Description:</strong> {{ election.description }}</p>
+        </div>
+
+
+        <a href="{% url 'vote' %}" class="back-link">Back to Voting Page</a>
+    </div>
+</body>
+</html>
